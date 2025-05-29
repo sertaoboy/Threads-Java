@@ -20,6 +20,21 @@ public class Aplicacao {
             Thread.sleep(1000);
         }
 
+        Info info = new Info();
+        int numLeitores = 10;
+        int numEscritores = 2;
+        ExecutorService e2 = Executors.newFixedThreadPool(numEscritores + numLeitores);
+        for(int i = 0;i<numLeitores;i++) {
+            Leitor r = new Leitor("Leitor" + i, info);
+            e2.execute(r);
+        }
+
+        for(int i = 0;i<numLeitores;i++) {
+            Escritor w = new Escritor(info);
+            e2.execute(w);
+        }
+        e2.shutdown();
+
 
     }
 }
