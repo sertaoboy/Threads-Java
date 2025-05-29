@@ -1,3 +1,10 @@
+import leitura.Escritor;
+import leitura.Info;
+import leitura.Leitor;
+import teste.Escritor;
+import teste.Info;
+import teste.Leitor;
+
 import java.io.File;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -8,28 +15,13 @@ public class Aplicacao {
     private static int NUM_CARROS = 100;
 
     public static void main(String[] args) throws Exception {
-        ExecutorService executor = Executors.newSingleThreadExecutor();
-        ExecutorService executorPool = Executors.newFixedThreadPool(2);
-        MyThread t = new MyThread();
-        executor.execute(t);
-        executor.shutdown();
-
-        ContaBancaria conta = new ContaBancaria();
-        Cliente c1 = new Cliente(conta);
-        Cliente c2 = new Cliente(conta);
-        executorPool.execute(c1);
-        executorPool.execute(c2);
-        executorPool.shutdown();
-        while(!executorPool.isTerminated()) {
-            Thread.sleep(1000);
-        }
 
         Info info = new Info();
         int numLeitores = 10;
         int numEscritores = 2;
         ExecutorService e2 = Executors.newFixedThreadPool(numEscritores + numLeitores);
         for(int i = 0;i<numLeitores;i++) {
-            Leitor r = new Leitor("Leitor" + i, info);
+            Leitor r = new Leitor("leitura.Leitor" + i, info);
             e2.execute(r);
         }
         for(int i = 0;i<numLeitores;i++) {
@@ -62,6 +54,12 @@ public class Aplicacao {
             System.out.println("Arquivo não encontrado.");
         }
         executorSimples2.shutdown();
+
+        for(int i = 0; i< 10; i++) {
+            int seq = Gerador.getNextSeq();
+            System.out.println(seq);
+        }
+
 
 
     }
