@@ -1,3 +1,5 @@
+package conta;
+
 import java.util.concurrent.locks.ReentrantLock;
 
 public class ContaBancaria {

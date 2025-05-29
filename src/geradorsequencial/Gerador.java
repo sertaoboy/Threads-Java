@@ -1,3 +1,5 @@
+package geradorsequencial;
+
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Gerador {

@@ -1,3 +1,5 @@
+package testandolock;
+
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -29,7 +31,7 @@ public class Semaforo implements Runnable{
         lock.lock();
         try {
             while(!aberto) {
-                System.out.println("[Carro " + id + "] Aguardando");
+                System.out.println("[testandolock.Carro " + id + "] Aguardando");
                 if(aberto) {
                     c.signalAll();
                 }
@@ -39,7 +41,7 @@ public class Semaforo implements Runnable{
                     e.printStackTrace();
                 }
             }
-            System.out.println("[Carro " + id +"] Atravessou");
+            System.out.println("[testandolock.Carro " + id +"] Atravessou");
         } finally {
             lock.unlock();
         }

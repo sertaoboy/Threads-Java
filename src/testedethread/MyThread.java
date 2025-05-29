@@ -1,3 +1,5 @@
+package testedethread;
+
 public class MyThread implements Runnable{
 
     @Override

@@ -1,3 +1,5 @@
+package conta;
+
 public class Cliente implements Runnable{
 
     private ContaBancaria conta;

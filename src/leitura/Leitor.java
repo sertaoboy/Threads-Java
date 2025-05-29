@@ -1,3 +1,5 @@
+package leitura;
+
 public class Leitor implements Runnable{
 
     private Info info;

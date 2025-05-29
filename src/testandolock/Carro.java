@@ -1,3 +1,5 @@
+package testandolock;
+
 public class Carro implements Runnable{
 
     private int id;

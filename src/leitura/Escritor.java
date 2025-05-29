@@ -1,3 +1,5 @@
+package leitura;
+
 public class Escritor implements Runnable{
 
     private Info info;
