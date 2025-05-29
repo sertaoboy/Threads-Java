@@ -1,6 +1,7 @@
 import java.io.File;
+import java.util.concurrent.Callable;
 
-public class Localizador {
+public class Localizador implements Callable<File> {
 
     private String startDir;
     private String nomeArquivo;
@@ -8,6 +9,11 @@ public class Localizador {
     public Localizador(String startDir, String nomeArquivo) {
         this.nomeArquivo=nomeArquivo;
         this.startDir=startDir;
+    }
+
+    @Override
+    public File call() throws Exception {
+        return search(new File(startDir));
     }
 
     private File search(File dir) {
@@ -30,4 +36,6 @@ public class Localizador {
         }
         return result;
     }
+
+
 }
