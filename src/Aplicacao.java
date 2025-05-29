@@ -3,6 +3,8 @@ import java.util.concurrent.Executors;
 
 public class Aplicacao {
 
+    private static int NUM_CARROS = 100;
+
     public static void main(String[] args) throws Exception {
         ExecutorService executor = Executors.newSingleThreadExecutor();
         ExecutorService executorPool = Executors.newFixedThreadPool(2);
@@ -28,12 +30,20 @@ public class Aplicacao {
             Leitor r = new Leitor("Leitor" + i, info);
             e2.execute(r);
         }
-
         for(int i = 0;i<numLeitores;i++) {
             Escritor w = new Escritor(info);
             e2.execute(w);
         }
         e2.shutdown();
+
+        ExecutorService e3 = Executors.newFixedThreadPool(NUM_CARROS + 1);
+        Semaforo semaforo = new Semaforo();
+        e3.execute(semaforo);
+        for(int i = 0; i<= NUM_CARROS; i++) {
+            Carro carro = new Carro(i, semaforo);
+            e3.execute(carro);
+        }
+        e3.shutdown();
 
 
     }
